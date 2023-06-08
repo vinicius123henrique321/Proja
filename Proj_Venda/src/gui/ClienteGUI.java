@@ -1,15 +1,11 @@
 package gui;
 
 import dao.AlunoDAO;
-import dao.AtividadesDAO;
-import dao.SalasDAO;
 import java.awt.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import modelo.Aluno;
-import modelo.Atividades;
-import modelo.Salas;
 import java.util.ArrayList;
 import java.util.Collection;
 import static java.util.random.RandomGeneratorFactory.all;
@@ -29,23 +25,24 @@ public class ClienteGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         EnviarAluno = new javax.swing.JButton();
-        EnviarSalas = new javax.swing.JButton();
-        EnviarAtv = new javax.swing.JButton();
         jTextFieldAluno = new javax.swing.JTextField();
-        jTextFieldSalas = new javax.swing.JTextField();
-        jTextFieldAtv = new javax.swing.JTextField();
+        jTextFieldCpf = new javax.swing.JTextField();
+        jTextFieldPeso = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         LimparAluno = new javax.swing.JButton();
-        LimparSalas = new javax.swing.JButton();
-        LimparAtv = new javax.swing.JButton();
-        jTabbed = new javax.swing.JTabbedPane();
-        jPanelAluno = new javax.swing.JPanel();
-        exibicaoAlunos = new javax.swing.JLabel();
-        jPanelSalas = new javax.swing.JPanel();
-        jPanelAtv = new javax.swing.JPanel();
+        LimparCpf = new javax.swing.JButton();
+        LimparPeso = new javax.swing.JButton();
+        jTextFieldAltura = new javax.swing.JTextField();
+        jTextFieldDataN = new javax.swing.JTextField();
+        LimparAltura = new javax.swing.JButton();
+        LimparDataN = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CRUD");
@@ -64,50 +61,29 @@ public class ClienteGUI extends javax.swing.JFrame {
             }
         });
 
-        EnviarSalas.setText("Enviar");
-        EnviarSalas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnviarSalasActionPerformed(evt);
-            }
-        });
-
-        EnviarAtv.setText("Enviar");
-        EnviarAtv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnviarAtvActionPerformed(evt);
-            }
-        });
-
         jTextFieldAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldAlunoActionPerformed(evt);
             }
         });
 
-        jTextFieldSalas.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSalasActionPerformed(evt);
+                jTextFieldCpfActionPerformed(evt);
             }
         });
 
-        jTextFieldAtv.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAtvActionPerformed(evt);
+                jTextFieldPesoActionPerformed(evt);
             }
         });
 
         jLabel7.setText("Nome:");
 
-        jLabel8.setText("Salas");
+        jLabel8.setText("Cpf:");
 
-        jLabel9.setText("Atividades:");
-
-        jButton4.setText("Sair");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jLabel9.setText("Peso:");
 
         LimparAluno.setText("Limpar");
         LimparAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -116,149 +92,160 @@ public class ClienteGUI extends javax.swing.JFrame {
             }
         });
 
-        LimparSalas.setText("Limpar");
-        LimparSalas.addActionListener(new java.awt.event.ActionListener() {
+        LimparCpf.setText("Limpar");
+        LimparCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LimparSalasActionPerformed(evt);
+                LimparCpfActionPerformed(evt);
             }
         });
 
-        LimparAtv.setText("Limpar");
-        LimparAtv.addActionListener(new java.awt.event.ActionListener() {
+        LimparPeso.setText("Limpar");
+        LimparPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LimparAtvActionPerformed(evt);
+                LimparPesoActionPerformed(evt);
             }
         });
+
+        jTextFieldAltura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAlturaActionPerformed(evt);
+            }
+        });
+
+        jTextFieldDataN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDataNActionPerformed(evt);
+            }
+        });
+
+        LimparAltura.setText("Limpar");
+        LimparAltura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LimparAlturaActionPerformed(evt);
+            }
+        });
+
+        LimparDataN.setText("Limpar");
+        LimparDataN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LimparDataNActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Altura:");
+
+        jLabel2.setText("Nascimento:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EnviarAluno)
-                            .addComponent(EnviarSalas)))
+                            .addComponent(jTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldAtv, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(EnviarAtv)))
-                .addGap(32, 32, 32)
+                        .addComponent(jTextFieldDataN, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LimparSalas)
-                            .addComponent(LimparAluno))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(EnviarAluno))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(LimparAtv)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addGap(14, 14, 14))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LimparPeso)
+                            .addComponent(LimparCpf)
+                            .addComponent(LimparAluno)
+                            .addComponent(LimparAltura)
+                            .addComponent(LimparDataN))
+                        .addGap(0, 133, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EnviarAluno)
-                    .addComponent(LimparAluno)
-                    .addComponent(jTextFieldAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldSalas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EnviarSalas)
-                    .addComponent(LimparSalas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextFieldAtv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EnviarAtv)
-                            .addComponent(LimparAtv))
-                        .addGap(14, 14, 14))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LimparAluno)
+                        .addComponent(jTextFieldAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(LimparCpf))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LimparPeso)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LimparAltura)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDataN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LimparDataN)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EnviarAluno)
+                .addContainerGap())
         );
 
-        jTabbed.setBackground(new java.awt.Color(255, 255, 0));
-        jTabbed.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabbedStateChanged(evt);
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Alunos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 276, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "IMC", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel3.setForeground(new java.awt.Color(204, 204, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jButton4.setText("Sair");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
-
-        jPanelAluno.setBackground(new java.awt.Color(153, 102, 255));
-        jPanelAluno.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jPanelAlunoFocusGained(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelAlunoLayout = new javax.swing.GroupLayout(jPanelAluno);
-        jPanelAluno.setLayout(jPanelAlunoLayout);
-        jPanelAlunoLayout.setHorizontalGroup(
-            jPanelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAlunoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(exibicaoAlunos)
-                .addContainerGap(721, Short.MAX_VALUE))
-        );
-        jPanelAlunoLayout.setVerticalGroup(
-            jPanelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAlunoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(exibicaoAlunos)
-                .addContainerGap(239, Short.MAX_VALUE))
-        );
-
-        jTabbed.addTab("Alunos", jPanelAluno);
-
-        jPanelSalas.setBackground(new java.awt.Color(153, 102, 255));
-
-        javax.swing.GroupLayout jPanelSalasLayout = new javax.swing.GroupLayout(jPanelSalas);
-        jPanelSalas.setLayout(jPanelSalasLayout);
-        jPanelSalasLayout.setHorizontalGroup(
-            jPanelSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
-        );
-        jPanelSalasLayout.setVerticalGroup(
-            jPanelSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
-        );
-
-        jTabbed.addTab("Salas", jPanelSalas);
-
-        jPanelAtv.setBackground(new java.awt.Color(153, 102, 255));
-
-        javax.swing.GroupLayout jPanelAtvLayout = new javax.swing.GroupLayout(jPanelAtv);
-        jPanelAtv.setLayout(jPanelAtvLayout);
-        jPanelAtvLayout.setHorizontalGroup(
-            jPanelAtvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
-        );
-        jPanelAtvLayout.setVerticalGroup(
-            jPanelAtvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
-        );
-
-        jTabbed.addTab("Atividades", jPanelAtv);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,22 +254,37 @@ public class ClienteGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbed))
-                .addGap(82, 82, 82))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(217, 217, 217))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 16, Short.MAX_VALUE)
-                .addComponent(jTabbed, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         pack();
@@ -293,52 +295,59 @@ public class ClienteGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAlunoActionPerformed
 
-    private void jTextFieldSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSalasActionPerformed
+    private void jTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSalasActionPerformed
+    }//GEN-LAST:event_jTextFieldCpfActionPerformed
 
-    private void jTextFieldAtvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAtvActionPerformed
+    private void jTextFieldPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAtvActionPerformed
-
-    private void EnviarAtvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarAtvActionPerformed
-        Atividades atv = new Atividades();
-        atv.setAtv_nome(jTextFieldAtv.getText());
-        
-        if((jTextFieldAtv.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
-        }
-        else {
-            AtividadesDAO dao = new AtividadesDAO();
-            dao.adicionaAtividade(atv);
-            JOptionPane.showMessageDialog(null, "A sala "+jTextFieldAtv.getText()+" foi cadastrada com sucesso!");
-        }     
-    }//GEN-LAST:event_EnviarAtvActionPerformed
-
-    private void EnviarSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarSalasActionPerformed
-        Salas sala = new Salas();
-        sala.setSala_nome(jTextFieldSalas.getText());
-        
-        if((jTextFieldSalas.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
-        }
-        else {
-            SalasDAO dao = new SalasDAO();
-            dao.adicionaSala(sala);
-            JOptionPane.showMessageDialog(null, "A sala "+jTextFieldSalas.getText()+" foi cadastrada com sucesso!");
-        }  
-    }//GEN-LAST:event_EnviarSalasActionPerformed
+    }//GEN-LAST:event_jTextFieldPesoActionPerformed
 
     private void EnviarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarAlunoActionPerformed
-        Aluno aluno = new Aluno();
-        aluno.setNome(jTextFieldAluno.getText());
+        Aluno alunoNome = new Aluno();
+        alunoNome.setNome(jTextFieldAluno.getText());
         
+        Aluno alunoCpf = new Aluno();
+        String CpfText = jTextFieldCpf.getText();
+        int cpf = Integer.parseInt(CpfText);
+        alunoCpf.setCpf(cpf);
+        
+        Aluno alunoAltura = new Aluno();
+        String AlturaText = jTextFieldCpf.getText();
+        int altura = Integer.parseInt(AlturaText);
+        alunoAltura.setAltura(altura);
+        
+        Aluno alunoPeso = new Aluno();
+        String PesoText = jTextFieldCpf.getText();
+        int peso = Integer.parseInt(PesoText);
+        alunoPeso.setPeso(peso);
+        
+        Aluno alunoData = new Aluno();
+        alunoData.setDataNascimento(jTextFieldCpf.getText());
+        
+
         if((jTextFieldAluno.getText().isEmpty())){
+            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+        } 
+        else if((jTextFieldCpf.getText().isEmpty())){
+            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+        }
+        else if((jTextFieldPeso.getText().isEmpty())){
+            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+        }
+        else if((jTextFieldAltura.getText().isEmpty())){
+            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+        }
+        else if((jTextFieldDataN.getText().isEmpty())){
             JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
         }
         else {
             AlunoDAO dao = new AlunoDAO();
-            dao.adicionaAluno(aluno);
+            dao.adicionaAluno(alunoNome);
+            dao.adicionaCpf(alunoCpf);
+            dao.adicionaAltura(alunoAltura);
+            dao.adicionaPeso(alunoPeso);
+            dao.adicionaData(alunoData);
             JOptionPane.showMessageDialog(null, "O aluno "+jTextFieldAluno.getText()+" foi cadastrado com sucesso!");
         }
     }//GEN-LAST:event_EnviarAlunoActionPerformed
@@ -347,34 +356,33 @@ public class ClienteGUI extends javax.swing.JFrame {
         jTextFieldAluno.setText(" ");
     }//GEN-LAST:event_LimparAlunoActionPerformed
 
-    private void LimparSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparSalasActionPerformed
-        jTextFieldSalas.setText(" ");
-    }//GEN-LAST:event_LimparSalasActionPerformed
+    private void LimparCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparCpfActionPerformed
+        jTextFieldCpf.setText(" ");
+    }//GEN-LAST:event_LimparCpfActionPerformed
 
-    private void LimparAtvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparAtvActionPerformed
-        jTextFieldAtv.setText(" ");
-    }//GEN-LAST:event_LimparAtvActionPerformed
+    private void LimparPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparPesoActionPerformed
+        jTextFieldPeso.setText(" ");
+    }//GEN-LAST:event_LimparPesoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTabbedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedStateChanged
-        if(jTabbed.getSelectedIndex() == 0){
-            AlunoDAO dao = new AlunoDAO();
-            ArrayList<Aluno> alunos = dao.exibirAlunos();
-            for (Aluno aluno: alunos){
-                String aln = aluno.getNome();
-                exibicaoAlunos.setText(aln);
-                exibicaoAlunos.add(exibicaoAlunos);
-            }
-        }
-        
-    }//GEN-LAST:event_jTabbedStateChanged
+    private void jTextFieldAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAlturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAlturaActionPerformed
 
-    private void jPanelAlunoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanelAlunoFocusGained
+    private void jTextFieldDataNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDataNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDataNActionPerformed
 
-    }//GEN-LAST:event_jPanelAlunoFocusGained
+    private void LimparAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparAlturaActionPerformed
+        jTextFieldAltura.setText(" ");
+    }//GEN-LAST:event_LimparAlturaActionPerformed
+
+    private void LimparDataNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparDataNActionPerformed
+        jTextFieldDataN.setText(" ");
+    }//GEN-LAST:event_LimparDataNActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -410,24 +418,25 @@ public class ClienteGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EnviarAluno;
-    private javax.swing.JButton EnviarAtv;
-    private javax.swing.JButton EnviarSalas;
+    private javax.swing.JButton LimparAltura;
     private javax.swing.JButton LimparAluno;
-    private javax.swing.JButton LimparAtv;
-    private javax.swing.JButton LimparSalas;
-    private javax.swing.JLabel exibicaoAlunos;
+    private javax.swing.JButton LimparCpf;
+    private javax.swing.JButton LimparDataN;
+    private javax.swing.JButton LimparPeso;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelAluno;
-    private javax.swing.JPanel jPanelAtv;
-    private javax.swing.JPanel jPanelSalas;
-    private javax.swing.JTabbedPane jTabbed;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextFieldAltura;
     private javax.swing.JTextField jTextFieldAluno;
-    private javax.swing.JTextField jTextFieldAtv;
-    private javax.swing.JTextField jTextFieldSalas;
+    private javax.swing.JTextField jTextFieldCpf;
+    private javax.swing.JTextField jTextFieldDataN;
+    private javax.swing.JTextField jTextFieldPeso;
     // End of variables declaration//GEN-END:variables
 }
