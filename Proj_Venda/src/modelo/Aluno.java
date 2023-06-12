@@ -1,5 +1,7 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class Aluno {
     private int id;
     protected int Cpf;
@@ -7,7 +9,7 @@ public class Aluno {
     protected String DataNascimento;
     protected int Peso;
     protected float Altura;
-        
+    private float Imc;        
     
     public int getId() {
         return id;
@@ -55,5 +57,13 @@ public class Aluno {
     
     public void setPeso(int peso){
         this.Peso = peso;
+    }
+
+    public float getImc() {
+        return Imc;
+    }
+
+    public void setImc(float Imc) {
+        this.Imc = Imc;
     }
 }

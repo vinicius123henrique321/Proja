@@ -2,9 +2,11 @@ package dao;
 
 import factory.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import modelo.Aluno;
 
@@ -17,62 +19,14 @@ public class AlunoDAO {
     }
     
     public void adicionaAluno(Aluno aluno) {
-        String sql = "INSERT INTO alunos(aln_nome) VALUES(?)";
+        String sql = "INSERT INTO alunos(aln_nome, aln_cpf, aln_peso, aln_altura, aln_data) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
-            stmt.execute();
-            stmt.close();
-        }
-        catch (SQLException u) {
-            throw new RuntimeException(u);
-        }
-    }
-    
-    public void adicionaCpf(Aluno aluno) {
-        String sql = "INSERT INTO alunos(aln_cpf) VALUES(?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, aluno.getCpf());
-            stmt.execute();
-            stmt.close();
-        }
-        catch (SQLException u) {
-            throw new RuntimeException(u);
-        }
-    }
-    
-    public void adicionaPeso(Aluno aluno) {
-        String sql = "INSERT INTO alunos(aln_peso) VALUES(?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, aluno.getPeso());
-            stmt.execute();
-            stmt.close();
-        }
-        catch (SQLException u) {
-            throw new RuntimeException(u);
-        }
-    }
-    
-    public void adicionaAltura(Aluno aluno) {
-        String sql = "INSERT INTO alunos(aln_altura) VALUES(?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setFloat(1, aluno.getAltura());
-            stmt.execute();
-            stmt.close();
-        }
-        catch (SQLException u) {
-            throw new RuntimeException(u);
-        }
-    }
-    
-    public void adicionaData(Aluno aluno) {
-        String sql = "INSERT INTO alunos(aln_data) VALUES(?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1,  aluno.getDataNascimento());
+            stmt.setInt(2, aluno.getCpf());
+            stmt.setInt(3, aluno.getPeso());
+            stmt.setFloat(4, aluno.getAltura());
+            stmt.setString(5, aluno.getDataNascimento());
             stmt.execute();
             stmt.close();
         }
@@ -115,4 +69,34 @@ public class AlunoDAO {
             throw new RuntimeException(u);
         }
     }
+    
+    public Aluno calcularIMC() throws SQLException{
+        String sql = "select aln_altura, aln_peso from alunos where aln_id = 1";
+        Aluno IMC = new Aluno();
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, 1);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                int peso = rs.getInt("aln_peso");
+                float altura = rs.getFloat("aln_altura");
+                int imc = (int) (peso /(altura * altura));
+                IMC.setImc(imc);
+            }
+            else{
+                System.out.println("eita");
+            }
+            stmt.execute();
+            stmt.close();
+            return IMC;
+        } 
+        catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+    }
 }
+    
+
+    
+
+

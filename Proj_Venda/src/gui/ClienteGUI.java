@@ -1,19 +1,25 @@
 package gui;
 
+import static com.sun.tools.javac.tree.TreeInfo.args;
 import dao.AlunoDAO;
 import java.awt.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import modelo.Aluno;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static java.util.random.RandomGeneratorFactory.all;
 
 public class ClienteGUI extends javax.swing.JFrame {
-
-    private Object jTabbedPane;
-
     public ClienteGUI() {
         initComponents();
     }
@@ -292,7 +298,7 @@ public class ClienteGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAlunoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldAlunoActionPerformed
 
     private void jTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfActionPerformed
@@ -304,64 +310,59 @@ public class ClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldPesoActionPerformed
 
     private void EnviarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarAlunoActionPerformed
-        Aluno alunoNome = new Aluno();
-        alunoNome.setNome(jTextFieldAluno.getText());
-        
-        Aluno alunoCpf = new Aluno();
-        String CpfText = jTextFieldCpf.getText();
-        int cpf = Integer.parseInt(CpfText);
-        alunoCpf.setCpf(cpf);
-        
-        Aluno alunoAltura = new Aluno();
-        String AlturaText = jTextFieldCpf.getText();
-        int altura = Integer.parseInt(AlturaText);
-        alunoAltura.setAltura(altura);
-        
-        Aluno alunoPeso = new Aluno();
-        String PesoText = jTextFieldCpf.getText();
-        int peso = Integer.parseInt(PesoText);
-        alunoPeso.setPeso(peso);
-        
-        Aluno alunoData = new Aluno();
-        alunoData.setDataNascimento(jTextFieldCpf.getText());
-        
-
         if((jTextFieldAluno.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+            JOptionPane.showMessageDialog(null,"só é possível enviar se todos os campos forem preenchidos");
         } 
         else if((jTextFieldCpf.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+            JOptionPane.showMessageDialog(null,"só é possível enviar se todos os campos forem preenchidos");
         }
         else if((jTextFieldPeso.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+            JOptionPane.showMessageDialog(null,"só é possível enviar se todos os campos forem preenchidos");
         }
         else if((jTextFieldAltura.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+            JOptionPane.showMessageDialog(null,"só é possível enviar se todos os campos forem preenchidos");
         }
         else if((jTextFieldDataN.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null,"o campo não pode retornar vazio");
+            JOptionPane.showMessageDialog(null,"só é possível enviar se todos os campos forem preenchidos");
         }
         else {
             AlunoDAO dao = new AlunoDAO();
-            dao.adicionaAluno(alunoNome);
-            dao.adicionaCpf(alunoCpf);
-            dao.adicionaAltura(alunoAltura);
-            dao.adicionaPeso(alunoPeso);
-            dao.adicionaData(alunoData);
+            Aluno aluno = new Aluno();
+            aluno.setNome(jTextFieldAluno.getText());
+            
+            String cpf = jTextFieldCpf.getText();
+            int cpfD = Integer.parseInt(cpf);
+            aluno.setCpf(cpfD);
+            
+            String peso = jTextFieldPeso.getText();
+            int pesoD = Integer.parseInt(peso);
+            aluno.setPeso(pesoD);
+            
+            String altura = jTextFieldAltura.getText();
+            int alturaD = Integer.parseInt(altura);
+            aluno.setAltura(alturaD);
+            
+            
+            String data = jTextFieldDataN.getText();
+            String[] dataSeparada = data.split("/");
+            LocalDate dataD = LocalDate.of(Integer.parseInt(dataSeparada[2]), Integer.parseInt(dataSeparada[1]), Integer.parseInt(dataSeparada[0]));
+            aluno.setDataNascimento(dataD.toString());
+            
+            dao.adicionaAluno(aluno);
             JOptionPane.showMessageDialog(null, "O aluno "+jTextFieldAluno.getText()+" foi cadastrado com sucesso!");
         }
     }//GEN-LAST:event_EnviarAlunoActionPerformed
 
     private void LimparAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparAlunoActionPerformed
-        jTextFieldAluno.setText(" ");
+        jTextFieldAluno.setText("");
     }//GEN-LAST:event_LimparAlunoActionPerformed
 
     private void LimparCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparCpfActionPerformed
-        jTextFieldCpf.setText(" ");
+        jTextFieldCpf.setText("");
     }//GEN-LAST:event_LimparCpfActionPerformed
 
     private void LimparPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparPesoActionPerformed
-        jTextFieldPeso.setText(" ");
+        jTextFieldPeso.setText("");
     }//GEN-LAST:event_LimparPesoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -384,7 +385,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         jTextFieldDataN.setText(" ");
     }//GEN-LAST:event_LimparDataNActionPerformed
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws ParseException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
