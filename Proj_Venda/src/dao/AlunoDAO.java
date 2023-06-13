@@ -23,9 +23,9 @@ public class AlunoDAO {
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
-            stmt.setInt(2, aluno.getCpf());
-            stmt.setInt(3, aluno.getPeso());
-            stmt.setFloat(4, aluno.getAltura());
+            stmt.setLong(2, aluno.getCpf());
+            stmt.setDouble(3, aluno.getPeso());
+            stmt.setDouble(4, aluno.getAltura());
             stmt.setString(5, aluno.getDataNascimento());
             stmt.execute();
             stmt.close();
@@ -36,31 +36,55 @@ public class AlunoDAO {
     }
     
     public void atualizarAluno(Aluno aluno) {
-        // implementação para atualizar pessoa no banco de dados
+        String sql = "UPDATE alunos SET aln_nome = ?, aln_data = ?, aln_peso = ?, aln_altura = ?, aln_cpf = ? WHERE aln_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, aluno.getNome());
+            stmt.setString(2, aluno.getDataNascimento());
+            stmt.setDouble(3, aluno.getPeso());
+            stmt.setDouble(4, aluno.getAltura());
+            stmt.setLong(5, aluno.getCpf());
+            stmt.setInt(6, aluno.getId());
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public void excluir(int id) {
-        // implementação para excluir pessoa do banco de dados pelo id
+        String sql = "DELETE FROM alunos WHERE aln_id = ?";
+        Connection conn = new ConnectionFactory().getConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
-    public Aluno selecionarPorId() {
-        Aluno aluno = new Aluno();
-        // implementação para selecionar pessoa do banco de dados pelo id
-        return aluno;
-    }
-    
-    public ArrayList<Aluno> exibirAlunos() {
-        String sql = "select * from aluno;";
+    public ArrayList<Aluno> obterAlunos() {
+        String sql = "select * from alunos;";
         ArrayList<Aluno> alunos = new ArrayList<>();
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                String nome = rs.getString("aln_nome");
                 int id = rs.getInt("aln_id");
+                Long cpf = rs.getLong("aln_cpf");
+                String nome = rs.getString("aln_nome");
+                String dataN = rs.getString("aln_data");
+                int peso = rs.getInt("aln_peso");
+                double altura = rs.getFloat("aln_altura");
                 Aluno aluno = new Aluno();
+                aluno.setCpf(cpf);
                 aluno.setNome(nome);
                 aluno.setId(id);
+                aluno.setDataNascimento(dataN);
+                aluno.setPeso(peso);
+                aluno.setAltura(altura);
                 alunos.add(aluno);
             }
             return alunos;
@@ -70,33 +94,28 @@ public class AlunoDAO {
         }
     }
     
-    public Aluno calcularIMC() throws SQLException{
-        String sql = "select aln_altura, aln_peso from alunos where aln_id = 1";
-        Aluno IMC = new Aluno();
+    public double calcularIMC(int id) throws SQLException{
+        String sql = "select aln_altura, aln_peso from alunos where aln_id = (?)";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, 1);
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 int peso = rs.getInt("aln_peso");
                 float altura = rs.getFloat("aln_altura");
-                int imc = (int) (peso /(altura * altura));
-                IMC.setImc(imc);
+                double imc = (peso /(altura * altura));
+                return imc;
             }
             else{
                 System.out.println("eita");
             }
             stmt.execute();
             stmt.close();
-            return IMC;
         } 
         catch (SQLException u) {
             throw new RuntimeException(u);
         }
+        return 0;
     }
 }
-    
-
-    
-
 
